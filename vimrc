@@ -36,6 +36,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
+" Automatically adjust 'shiftwidth' and 'expandtab'.
+Plug 'tpope/vim-sleuth'
 " Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -60,13 +62,13 @@ set autoread
 set autowrite
 
 " A <tab> has a width of 2 blanks.
-set softtabstop=2
+"set softtabstop=2
 
 " Use 2 blanks for each step of (auto)indent.
-set shiftwidth=2
+"set shiftwidth=2
 
 " Use the appropiate number of spaces to insert a <Tab>.
-set expandtab
+"set expandtab
 
 " Enable line numbering.
 set number
