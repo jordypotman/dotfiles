@@ -61,6 +61,24 @@ set autoread
 " Automatically write files before commands such as :make.
 set autowrite
 
+" Set backup directory and create it if it does not exist yet.
+set backupdir=~/.vim/backup//
+if !isdirectory(expand(&backupdir))
+  call mkdir(expand(&backupdir), "p")
+endif
+
+" Set swap directory and create it if it does not exist yet.
+set directory=~/.vim/swap//
+if !isdirectory(expand(&directory))
+  call mkdir(expand(&directory), "p")
+endif
+
+" Set undo directory and create it if it does not exist yet.
+set undodir=~/.vim/undo//
+if !isdirectory(expand(&undodir))
+  call mkdir(expand(&undodir), "p")
+endif
+
 " Enable line numbering.
 set number
 
