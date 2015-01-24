@@ -61,15 +61,6 @@ set autoread
 " Automatically write files before commands such as :make.
 set autowrite
 
-" A <tab> has a width of 2 blanks.
-"set softtabstop=2
-
-" Use 2 blanks for each step of (auto)indent.
-"set shiftwidth=2
-
-" Use the appropiate number of spaces to insert a <Tab>.
-"set expandtab
-
 " Enable line numbering.
 set number
 
