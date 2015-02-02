@@ -27,7 +27,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'gilligan/vim-lldb'
+"Plug 'gilligan/vim-lldb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'rking/ag.vim'
@@ -41,7 +41,7 @@ Plug 'tpope/vim-sleuth'
 " Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 
 call plug#end()
 
@@ -144,6 +144,7 @@ set cinoptions=:0,l1,g0,(0,Ws
 augroup ft_c_cpp
   autocmd!
   autocmd FileType c,cpp set cindent
+  autocmd FileType c,cpp set comments^=:///
   autocmd FileType c,cpp nnoremap <buffer> <leader>g :YcmCompleter GoTo<CR>
   autocmd FileType c,cpp map <buffer> <leader>f :pyf ~/.vim/clang-format/clang-format.py<CR>
 augroup END
