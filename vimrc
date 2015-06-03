@@ -27,7 +27,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
-"Plug 'gilligan/vim-lldb'
+Plug 'gilligan/vim-lldb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'rking/ag.vim'
@@ -41,7 +41,7 @@ Plug 'tpope/vim-sleuth'
 " Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 
 call plug#end()
 
