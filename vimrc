@@ -31,6 +31,8 @@ Plug 'gilligan/vim-lldb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'rking/ag.vim'
+" Rust file detection and syntax highlighting.
+Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
