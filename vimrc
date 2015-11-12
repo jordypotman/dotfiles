@@ -1,9 +1,5 @@
 " Jordy Potman's .vimrc.
 
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
 " Auto reload .vimrc.
 augroup reload_vimrc
   autocmd!
