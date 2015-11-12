@@ -24,7 +24,12 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'gilligan/vim-lldb'
+" Vim text objects for comments.
+Plug 'glts/vim-textobj-comment'
 Plug 'ctrlpvim/ctrlp.vim'
+" Library plugin to define your own text objects.
+" Dependency for vim-textobj-comment.
+Plug 'kana/vim-textobj-user'
 Plug 'majutsushi/tagbar'
 Plug 'rking/ag.vim'
 " Rust file detection and syntax highlighting.
