@@ -32,7 +32,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   Plug 'altercation/vim-colors-solarized'
   Plug 'bling/vim-airline'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'gilligan/vim-lldb'
+  if executable('lldb')
+    Plug 'gilligan/vim-lldb'
+  endif
   " Vim text objects for comments.
   Plug 'glts/vim-textobj-comment'
   Plug 'ctrlpvim/ctrlp.vim'
