@@ -11,42 +11,47 @@ let mapleader = "\<Space>"
 
 " Automatically install vim-plug and all plugins.
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !mkdir -p ~/.vim/autoload
-  silent !curl -fLo ~/.vim/autoload/plug.vim
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+  if executable('curl')
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  endif
+  if !empty(glob('~/.vim/autoload/plug.vim'))
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+  endif
 endif
 
 " Plugins.
-call plug#begin('~/.vim/bundle')
-
-Plug 'altercation/vim-colors-solarized'
-Plug 'bling/vim-airline'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'gilligan/vim-lldb'
-" Vim text objects for comments.
-Plug 'glts/vim-textobj-comment'
-Plug 'ctrlpvim/ctrlp.vim'
-" Library plugin to define your own text objects.
-" Dependency for vim-textobj-comment.
-Plug 'kana/vim-textobj-user'
-Plug 'majutsushi/tagbar'
-Plug 'rking/ag.vim'
-" Rust file detection and syntax highlighting.
-Plug 'rust-lang/rust.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
-" Automatically adjust 'shiftwidth' and 'expandtab'.
-Plug 'tpope/vim-sleuth'
-" Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
-
-call plug#end()
+if !empty(glob('~/.vim/autoload/plug.vim'))
+  call plug#begin('~/.vim/bundle')
+  
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'bling/vim-airline'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'gilligan/vim-lldb'
+  " Vim text objects for comments.
+  Plug 'glts/vim-textobj-comment'
+  Plug 'ctrlpvim/ctrlp.vim'
+  " Library plugin to define your own text objects.
+  " Dependency for vim-textobj-comment.
+  Plug 'kana/vim-textobj-user'
+  Plug 'majutsushi/tagbar'
+  Plug 'rking/ag.vim'
+  " Rust file detection and syntax highlighting.
+  Plug 'rust-lang/rust.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-sensible'
+  " Automatically adjust 'shiftwidth' and 'expandtab'.
+  Plug 'tpope/vim-sleuth'
+  " Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+  
+  call plug#end()
+endif
 
 " Enable file type detection including loading the plugin and indent files for
 " specfic types.
@@ -94,8 +99,9 @@ set nowrap
 " Use colors which look good on dark backgrounds.
 set background=dark
 
-" Set colorscheme to solarized.
-colorscheme solarized
+" Try to set the colorscheme to solarized but do not report an error if it is
+" not available.
+silent! colorscheme solarized
 
 " Enable the use of the mouse in all four modes.
 set mouse=a
