@@ -55,7 +55,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
-  if v:version > 730 || v:version == 730 && has('patch598')
+  if v:version > 703 || v:version == 703 && has('patch598')
     Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
   endif
   
