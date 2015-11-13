@@ -56,7 +56,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
   if v:version > 703 || v:version == 703 && has('patch598')
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
   endif
   
   call plug#end()
