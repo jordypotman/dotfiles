@@ -1,0 +1,83 @@
+# ~/.bash_interactive: intended to be read and executed by bash for interactive
+# shells.
+
+# All commands in this file are intended for interactive shells, so don't do
+# anything if not running interactively.
+[ -z "$PS1" ] && return
+
+# Check the window size after each command and if necessary update the values
+# of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Set prompt to username@hostname:workingdirectory.
+PS1='\u@\h:\w\$ '
+
+# If this is a GUI terminal set the title to username@hostname:workingdirectory.
+case "$TERM" in
+xterm*|rxvt*)
+  PS1="\[\e]0;\u@\h:\w\a\]$PS1"
+  ;;
+*)
+  ;;
+esac
+
+# If not running in posix mode enable programmable completion if available.
+if ! shopt -oq posix; then
+  if [ -r /etc/bash_completion ]; then
+    source /etc/bash_completion
+  elif [ -r $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
+  fi
+fi
+
+# Set the size of the history and history file to unlimited.
+HISTSIZE=
+HISTFILESIZE=
+
+# Save all commands in the history.
+HISTCONTROL=
+
+# Prefix all commands in the output of the history builtin with the date and
+# time.
+HISTTIMEFORMAT="%F %T "
+
+# Append to the history file instead of overwriting it.
+shopt -s histappend
+
+# Append the just executed command to the history file when displaying a new
+# prompt.
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# Setup colors for ls using the dircolors command if available.
+if [ -x /usr/bin/dircolors ]; then
+  if [ -r ~/.dircolors ]; then
+    eval "$(dircolors -b ~/.dircolors)"
+  else
+    eval "$(dircolors -b)"
+  fi
+fi
+
+# Enable color output for ls and grep if supported.
+if [ "$TERM" != "dumb" ]; then
+  if ls -d --color=auto > /dev/null 2>&1; then
+    alias ls='ls --color=auto'
+  else
+    alias ls='ls -G'
+  fi
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+# Use lesspipe to make less more friendly for non-text input files if available.
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# Add some common aliases for ls.
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Source additional aliases from ~/.bash_aliases if it exists.
+if [ -r ~/.bash_aliases ]; then
+  source ~/.bash_aliases
+fi
