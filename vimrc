@@ -28,7 +28,7 @@ endif
 " Plugins.
 if !empty(glob('~/.vim/autoload/plug.vim'))
   call plug#begin('~/.vim/bundle')
-  
+
   Plug 'altercation/vim-colors-solarized'
   Plug 'bling/vim-airline'
   Plug 'christoomey/vim-tmux-navigator'
@@ -46,6 +46,11 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Rust file detection and syntax highlighting.
   Plug 'rust-lang/rust.vim'
   Plug 'scrooloose/nerdtree'
+  " Run files through external syntax checkers and display any resulting
+  " errors.
+  Plug 'scrooloose/syntastic'
+  " Vim sugar for UNIX shell commands such as rm, mv, chmod, mkdir, find, etc.
+  Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
@@ -58,7 +63,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   if v:version > 703 || v:version == 703 && has('patch598')
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
   endif
-  
+
   call plug#end()
 endif
 
@@ -135,6 +140,10 @@ map S i<CR><Esc>
 
 " NERDTree settings
 let NERDTreeHijackNetrw = 0
+
+" Syntastic settings
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " vim-lldb mappings
 let g:lldb_map_Lbreakpoint = "<leader>b"
