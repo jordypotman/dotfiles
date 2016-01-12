@@ -49,6 +49,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Run files through external syntax checkers and display any resulting
   " errors.
   Plug 'scrooloose/syntastic'
+  " Instant Markdown preview.
+  Plug 'suan/vim-instant-markdown'
   " Vim sugar for UNIX shell commands such as rm, mv, chmod, mkdir, find, etc.
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-dispatch'
@@ -144,6 +146,9 @@ let NERDTreeHijackNetrw = 0
 " Syntastic settings
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" vim-instant-markdown settings
+let g:instant_markdown_autostart = 0
 
 " vim-lldb mappings
 let g:lldb_map_Lbreakpoint = "<leader>b"
