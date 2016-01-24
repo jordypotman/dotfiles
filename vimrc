@@ -38,6 +38,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Vim text objects for comments.
   Plug 'glts/vim-textobj-comment'
   Plug 'ctrlpvim/ctrlp.vim'
+  " File system explorer.
+  Plug 'jeetsukumaran/vim-filebeagle'
   " Library plugin to define your own text objects.
   " Dependency for vim-textobj-comment.
   Plug 'kana/vim-textobj-user'
