@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+DONT_INSTALL_FILENAMES="archive install"
+
+dont_install() {
+  filename="$1"
+  for dont_install_filename in ${DONT_INSTALL_FILENAMES}; do
+    if [ "${filename}" = "${dont_install_filename}" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+if [ ! -e "${PWD}"/install ]; then
+  >&2 echo  "error: the install script must be run from the dotfiles directory"
+  exit 1
+fi
+
+for file in "${PWD}"/*; do
+  filename="${file#"${PWD}"/}"
+  if dont_install "${filename}"; then
+    continue
+  fi
+  dotfile="${HOME}"/."${filename}"
+  if [ -e "${dotfile}" ]; then
+    if [ -L "${dotfile}" ]; then
+      target="${HOME}"/"$(readlink "${dotfile}")"
+      if [ "${target}" = "${file}" ]; then
+        echo "skipping ${file}: ${dotfile} already linked to ${file}"
+        continue;
+      fi
+    fi
+    echo "moving ${dotfile} to ${PWD}/archive/${filename}"
+    mkdir -p "${PWD}"/archive
+    mv "${dotfile}" "${PWD}"/archive/"${filename}"
+  fi
+  echo "linking ${dotfile} to ${file}"
+  ln -s "${file}" "${dotfile}"
+done
