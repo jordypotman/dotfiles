@@ -67,6 +67,10 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   if v:version > 703 || v:version == 703 && has('patch598')
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
   endif
+  " Settings for LLVM assembly *.ll and tablegen *.td files.
+  if isdirectory(expand('~/toolbox/share/llvm/vim'))
+    Plug '~/toolbox/share/llvm/vim'
+  endif
 
   call plug#end()
 endif
@@ -180,28 +184,16 @@ augroup ft_c_cpp
   autocmd FileType c,cpp set cindent
   autocmd FileType c,cpp set comments^=:///
   autocmd FileType c,cpp nnoremap <buffer> <leader>g :YcmCompleter GoTo<CR>
-  autocmd FileType c,cpp map <buffer> <leader>f :pyf ~/.vim/clang-format/clang-format.py<CR>
+  if filereadable(expand('~/toolbox/share/clang/clang-format.py'))
+    autocmd FileType c,cpp map <buffer> <leader>f :pyf ~/toolbox/share/clang/clang-format.py<CR>
+  endif
 augroup END
 
-augroup ft_llvm
-  " Enable syntax highlighting for LLVM files. Requires
-  " utils/vim/llvm.vim from the LLVM repository in  ~/.vim/syntax .
-  au! BufRead,BufNewFile *.ll set filetype=llvm
-augroup END
-
-augroup ft_make
+augroup ft_llvm_make
   autocmd!
-  " LLVM Makefiles can have names such as Makefile.rules or
-  " TEST.nightly.Makefile, so it's important to categorize them as such.
+  " Categorize LLVM Makefiles with names such as Makefile.rules or
+  " TEST.nightly.Makefile, as Makefiles.
   autocmd BufRead,BufNewFile *Makefile* set filetype=make
-  " In Makefiles, don't expand tabs to spaces, since we need the actual tabs.
-  autocmd FileType make set noexpandtab
-augroup END
-
-augroup ft_tablegen
-  " Enable syntax highlighting for LLVM tablegen files. Requires
-  " utils/vim/tablegen.vim from the LLVM repository in ~/.vim/syntax/ .
-  au! BufRead,BufNewFile *.td set filetype=tablegen
 augroup END
 
 augroup ft_markdown
