@@ -166,19 +166,6 @@ let g:lldb_map_Lnext = "<leader>n"
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
-" Change a few of the C indentation options from the defaults. See the help for
-" cinoptions-values for details.
-" :0  Place case labels 0 characters from the indent of the switch().
-" l1  Align with a case label instead of the statment after it in the same line.
-" g0  Place C++ scope declarations ("public:", "protected:" or "private:") 0
-"     characters from the indent of the block they are in.
-" (0  When in unclosed parentheses line up with the next non-whitespace
-"     character after the unclosed parentheses.
-" Ws  When in unclosed parentheses and the unclosed parentheses is the last
-"     non-whitespace character in its line, indent the following line
-"     'shiftwidth' characters relative to the outer context.
-set cinoptions=:0,l1,g0,(0,Ws
-
 augroup ft_c_cpp
   autocmd!
   autocmd FileType c,cpp set cindent
