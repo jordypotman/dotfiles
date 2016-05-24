@@ -43,6 +43,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Library plugin to define your own text objects.
   " Dependency for vim-textobj-comment.
   Plug 'kana/vim-textobj-user'
+  " Automatic management of tag files.
+  Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
   Plug 'rking/ag.vim'
   " Rust file detection and syntax highlighting.
