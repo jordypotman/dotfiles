@@ -30,7 +30,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   call plug#begin('~/.vim/bundle')
 
   Plug 'altercation/vim-colors-solarized'
-  Plug 'bling/vim-airline'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'christoomey/vim-tmux-navigator'
   if executable('lldb')
     Plug 'gilligan/vim-lldb'
