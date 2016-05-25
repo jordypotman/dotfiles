@@ -42,3 +42,8 @@ HCO="$HCO --input_methoddir='/Library/Input Methods'"
 HCO="$HCO --internet_plugindir='/Library/Internet Plug-Ins'"
 HCO="$HCO --screen_saverdir='/Library/Screen Savers'"
 export HOMEBREW_CASK_OPTS="$HCO"
+
+# Source local profile settings from .profile.local if it is readable.
+if [ -r "$HOME/.profile.local" ]; then
+  . "$HOME/.profile.local"
+fi
