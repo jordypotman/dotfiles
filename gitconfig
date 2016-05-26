@@ -1,3 +1,5 @@
+[core]
+	excludesfile = /home/potman/.gitignore
 [merge]
 	tool = vimdiff
 [mergetool]
