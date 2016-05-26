@@ -25,7 +25,7 @@ for file in "${PWD}"/*; do
   dotfile="${HOME}"/."${filename}"
   if [ -e "${dotfile}" ]; then
     if [ -L "${dotfile}" ]; then
-      target="${HOME}"/"$(readlink "${dotfile}")"
+      target="$(readlink "${dotfile}")"
       if [ "${target}" = "${file}" ]; then
         echo "skipping ${file}: ${dotfile} already linked to ${file}"
         continue;
