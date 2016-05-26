@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-DONT_INSTALL_FILENAMES="archive install"
+DONT_INSTALL_FILENAMES="archive install tags"
 
 dont_install() {
   filename="$1"
