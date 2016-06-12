@@ -25,50 +25,91 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
   call plug#begin('~/.vim/bundle')
 
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'christoomey/vim-tmux-navigator'
-  if executable('lldb')
-    Plug 'gilligan/vim-lldb'
-  endif
-  " Vim text objects for comments.
-  Plug 'glts/vim-textobj-comment'
-  Plug 'ctrlpvim/ctrlp.vim'
-  " File system explorer.
-  Plug 'jeetsukumaran/vim-filebeagle'
-  " Library plugin to define your own text objects.
-  " Dependency for vim-textobj-comment.
-  Plug 'kana/vim-textobj-user'
-  " Automatic management of tag files.
-  Plug 'ludovicchabant/vim-gutentags'
-  Plug 'majutsushi/tagbar'
-  Plug 'rking/ag.vim'
-  " Rust file detection and syntax highlighting.
-  Plug 'rust-lang/rust.vim'
-  Plug 'scrooloose/nerdtree'
-  " Run files through external syntax checkers and display any resulting
-  " errors.
-  Plug 'scrooloose/syntastic'
-  " Instant Markdown preview.
-  Plug 'suan/vim-instant-markdown'
-  " Vim sugar for UNIX shell commands such as rm, mv, chmod, mkdir, find, etc.
-  Plug 'tpope/vim-eunuch'
-  Plug 'tpope/vim-dispatch'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-repeat'
+  " A universal set of defaults that (hopefully) everyone can agree on.
   Plug 'tpope/vim-sensible'
+
+  " Enable repeating supported plugin maps with '.'.
+  Plug 'tpope/vim-repeat'
+
+  " Lean & mean status/tabline that's light as air.
+  Plug 'vim-airline/vim-airline'
+
+  " A collection of themes for vim-airline.
+  Plug 'vim-airline/vim-airline-themes'
+
+  " Precision colorscheme.
+  Plug 'altercation/vim-colors-solarized'
+
   " Automatically adjust 'shiftwidth' and 'expandtab'.
   Plug 'tpope/vim-sleuth'
-  " Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-unimpaired'
+
+  " Automatic management of tag files.
+  Plug 'ludovicchabant/vim-gutentags'
+
+  " Fast, as-you-type, fuzzy-search code completion engine.
   if v:version > 703 || v:version == 703 && has('patch598')
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
   endif
+
+  " Seamless navigation between tmux panes and vim splits.
+  Plug 'christoomey/vim-tmux-navigator'
+
+  " Filesystem tree explorer.
+  Plug 'scrooloose/nerdtree'
+
+  " Pairs of handy bracket mappings.
+  Plug 'tpope/vim-unimpaired'
+
+  " Fuzzy file, buffer, most recently used, tag, etc finder.
+  Plug 'ctrlpvim/ctrlp.vim'
+
+  " Git wrapper.
+  Plug 'tpope/vim-fugitive'
+
+  " File system explorer.
+  Plug 'jeetsukumaran/vim-filebeagle'
+
+  " Sidebar that displays tags of the current file, ordered by scope.
+  Plug 'majutsushi/tagbar'
+
+  " Asynchronous build and test dispatcher.
+  Plug 'tpope/vim-dispatch'
+
+  " Run files through external syntax checkers and display any resulting
+  " errors.
+  Plug 'scrooloose/syntastic'
+
+  " Instant Markdown preview.
+  Plug 'suan/vim-instant-markdown'
+
+  " Vim sugar for UNIX shell commands such as rm, mv, chmod, mkdir, find, etc.
+  Plug 'tpope/vim-eunuch'
+
+  " Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
+  Plug 'tpope/vim-surround'
+
+  " Vim text objects for comments.
+  Plug 'glts/vim-textobj-comment'
+
+  " Library plugin to define your own text objects.
+  " Dependency for vim-textobj-comment.
+  Plug 'kana/vim-textobj-user'
+
   " Settings for LLVM assembly *.ll and tablegen *.td files.
   if isdirectory(expand('~/toolbox/share/llvm/vim'))
     Plug '~/toolbox/share/llvm/vim'
+  endif
+
+  " Rust file detection, syntax highlighting, formatting, Syntastic
+  " integration, and more.
+  Plug 'rust-lang/rust.vim'
+
+  " Front for ag, a.k.a. the_silver_searcher.
+  Plug 'rking/ag.vim'
+
+  " LLDB debugger integration.
+  if executable('lldb')
+    Plug 'gilligan/vim-lldb'
   endif
 
   call plug#end()
