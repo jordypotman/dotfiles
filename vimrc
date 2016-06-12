@@ -115,9 +115,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   call plug#end()
 endif
 
-" Make the % command jump to matching keyword such as if/else/endif.
-runtime macros/matchit.vim
-
 " Enable hidden buffers.
 set hidden
 
