@@ -5,7 +5,7 @@
 " defined by plugins.
 let mapleader = "\<Space>"
 
-" Automatically install vim-plug and all plugins.
+" Automatically install vim-plug Vim plugin manager and all plugins.
 if empty(glob('~/.vim/autoload/plug.vim'))
   if executable('curl')
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
