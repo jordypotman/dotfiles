@@ -1,11 +1,5 @@
 " Jordy Potman's .vimrc.
 
-" Auto reload .vimrc.
-augroup reload_vimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
-
 " Leader
 let mapleader = "\<Space>"
 
@@ -172,6 +166,12 @@ let g:lldb_map_Lnext = "<leader>n"
 " YouCompleteMe fallback configuration file.
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
+
+" Automatically reload .vimrc.
+augroup reload_vimrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
 
 augroup ft_c_cpp
   autocmd!
