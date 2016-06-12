@@ -187,7 +187,7 @@ augroup ft_llvm_make
   autocmd!
   " Categorize LLVM Makefiles with names such as Makefile.rules or
   " TEST.nightly.Makefile, as Makefiles.
-  autocmd BufRead,BufNewFile *Makefile* set filetype=make
+  autocmd BufNewFile,BufReadPost *Makefile* set filetype=make
 augroup END
 
 augroup ft_markdown
