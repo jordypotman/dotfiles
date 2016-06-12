@@ -149,6 +149,10 @@ cnoremap <C-n> <Down>
 " The normal use of S is covered by cc, so don't worry about shadowing it.
 map S i<CR><Esc>
 
+" Airline settings
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
 " NERDTree settings
 let NERDTreeHijackNetrw = 0
 
