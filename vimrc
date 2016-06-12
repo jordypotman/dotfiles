@@ -1,6 +1,8 @@
 " Jordy Potman's .vimrc.
 
-" Leader
+" Set mapleader at top of .vimrc because it's value is used at the moment the
+" mapping is defined. This way it also has effect on any leader mappings
+" defined by plugins.
 let mapleader = "\<Space>"
 
 " Automatically install vim-plug and all plugins.
