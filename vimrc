@@ -72,10 +72,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   call plug#end()
 endif
 
-" Enable file type detection including loading the plugin and indent files for
-" specfic types.
-filetype plugin indent on
-
 " Make the % command jump to matching keyword such as if/else/endif.
 runtime macros/matchit.vim
 
