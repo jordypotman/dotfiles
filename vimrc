@@ -88,6 +88,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
   Plug 'tpope/vim-surround'
 
+  " Easily search for, substitute, and abbreviate multiple variants of a word.
+  Plug 'tpope/vim-abolish'
+
   " Vim text objects for comments.
   Plug 'glts/vim-textobj-comment'
 
