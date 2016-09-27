@@ -98,6 +98,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Dependency for vim-textobj-comment.
   Plug 'kana/vim-textobj-user'
 
+  " Syntax and makeprg support for PlantUML
+  Plug 'aklt/plantuml-syntax'
+
   " Settings for LLVM assembly *.ll and tablegen *.td files.
   if isdirectory(expand('~/toolbox/share/llvm/vim'))
     Plug '~/toolbox/share/llvm/vim'
