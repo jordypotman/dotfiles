@@ -177,6 +177,11 @@ endif
 set splitright
 set splitbelow
 
+" Complete till longest common string, showing all matches in wildmenu on
+" first press of <Tab>, complete the next full match on second press of <Tab>.
+" See: http://stackoverflow.com/questions/526858
+set wildmode=longest:full,full
+
 " Let C-n and C-p filter command history.
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
