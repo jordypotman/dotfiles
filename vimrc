@@ -101,6 +101,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Syntax and makeprg support for PlantUML
   Plug 'aklt/plantuml-syntax'
 
+  " Personal Wiki for Vim.
+  Plug 'vimwiki/vimwiki'
+
   " Settings for LLVM assembly *.ll and tablegen *.td files.
   if isdirectory(expand('~/toolbox/share/llvm/vim'))
     Plug '~/toolbox/share/llvm/vim'
@@ -213,6 +216,27 @@ let g:lldb_map_Lnext = "<leader>n"
 " YouCompleteMe fallback configuration file.
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
+
+" Vimwiki settings
+let private_wiki = {}
+let private_wiki.path = '~/vimwiki/private'
+let private_wiki.syntax = 'markdown'
+let private_wiki.index = 'README'
+let private_wiki.ext = '.md'
+
+let public_wiki = {}
+let public_wiki.path = '~/vimwiki/public'
+let public_wiki.syntax = 'markdown'
+let public_wiki.index = 'README'
+let public_wiki.ext = '.md'
+
+let personal_wiki = {}
+let personal_wiki.path = '~/vimwiki/personal'
+let personal_wiki.syntax = 'markdown'
+let personal_wiki.index = 'README'
+let personal_wiki.ext = '.md'
+
+let g:vimwiki_list = [private_wiki, public_wiki, personal_wiki]
 
 " Automatically reload .vimrc.
 augroup reload_vimrc
