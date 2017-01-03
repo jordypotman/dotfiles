@@ -236,7 +236,25 @@ let personal_wiki.syntax = 'markdown'
 let personal_wiki.index = 'README'
 let personal_wiki.ext = '.md'
 
-let g:vimwiki_list = [private_wiki, public_wiki, personal_wiki]
+let recore_wiki = {}
+let recore_wiki.path = '~/vimwiki/recore'
+let recore_wiki.syntax = 'markdown'
+let recore_wiki.index = 'README'
+let recore_wiki.ext = '.md'
+
+let g:vimwiki_list = []
+if isdirectory(expand(private_wiki.path))
+  let g:vimwiki_list += [private_wiki]
+endif
+if isdirectory(expand(public_wiki.path))
+  let g:vimwiki_list += [public_wiki]
+endif
+if isdirectory(expand(personal_wiki.path))
+  let g:vimwiki_list += [personal_wiki]
+endif
+if isdirectory(expand(recore_wiki.path))
+  let g:vimwiki_list += [recore_wiki]
+endif
 
 " Automatically reload .vimrc.
 augroup reload_vimrc
