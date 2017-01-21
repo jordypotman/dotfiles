@@ -218,6 +218,8 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
 " Vimwiki settings
+let g:vimwiki_global_ext = 0
+
 let private_wiki = {}
 let private_wiki.path = '~/vimwiki/private'
 let private_wiki.syntax = 'markdown'
