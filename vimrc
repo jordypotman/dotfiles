@@ -258,6 +258,9 @@ if isdirectory(expand(recore_wiki.path))
   let g:vimwiki_list += [recore_wiki]
 endif
 
+" vim-gutentags settings
+let g:gutentags_cache_dir = '~/.vim/tags'
+
 " Automatically reload .vimrc.
 augroup reload_vimrc
   autocmd!
