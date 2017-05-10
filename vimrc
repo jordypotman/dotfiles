@@ -185,6 +185,15 @@ set splitbelow
 " See: http://stackoverflow.com/questions/526858
 set wildmode=longest:full,full
 
+" Folding.
+if has('folding')
+  " Faster than syntax.
+  set foldmethod=indent
+
+  " Start unfolded.
+  set foldlevelstart=99
+endif
+
 " Let C-n and C-p filter command history.
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
