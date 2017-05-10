@@ -47,7 +47,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   Plug 'ludovicchabant/vim-gutentags'
 
   " Fast, as-you-type, fuzzy-search code completion engine.
-  if v:version > 703 || v:version == 703 && has('patch598')
+  if v:version > 704 || v:version == 704 && has('patch143')
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
   endif
 
