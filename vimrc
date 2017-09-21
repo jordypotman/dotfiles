@@ -222,10 +222,6 @@ let g:lldb_map_Lcontinue = "<leader>c"
 let g:lldb_map_Lstep = "<leader>s"
 let g:lldb_map_Lnext = "<leader>n"
 
-" YouCompleteMe fallback configuration file.
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
-
 " Vimwiki settings
 let g:vimwiki_global_ext = 0
 
