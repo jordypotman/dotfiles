@@ -278,7 +278,11 @@ augroup ft_c_cpp
   autocmd FileType c,cpp set comments^=:///
   autocmd FileType c,cpp nnoremap <buffer> <leader>g :YcmCompleter GoTo<CR>
   if filereadable(expand('~/toolbox/share/clang/clang-format.py'))
-    autocmd FileType c,cpp map <buffer> <leader>f :pyf ~/toolbox/share/clang/clang-format.py<CR>
+    if has('python')
+      autocmd FileType c,cpp map <buffer> <leader>f :pyf ~/toolbox/share/clang/clang-format.py<CR>
+    elseif has('python3')
+      autocmd FileType c,cpp map <buffer> <leader>f :py3f ~/toolbox/share/clang/clang-format.py<CR>
+    endif
   endif
 augroup END
 
