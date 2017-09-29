@@ -28,6 +28,9 @@ if ! shopt -oq posix; then
   elif [ -r $(brew --prefix)/etc/bash_completion ]; then
     source $(brew --prefix)/etc/bash_completion
   fi
+  if [ -r ~/toolbox/share/ninja ]; then
+    source ~/toolbox/share/ninja/bash-completion
+  fi
 fi
 
 # Set the size of the history and history file to unlimited.
