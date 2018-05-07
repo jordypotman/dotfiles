@@ -66,8 +66,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Git wrapper.
   Plug 'tpope/vim-fugitive'
 
-  " File system explorer.
-  Plug 'jeetsukumaran/vim-filebeagle'
+  " Directory viewer.
+  Plug 'justinmk/vim-dirvish'
 
   " Sidebar that displays tags of the current file, ordered by scope.
   Plug 'majutsushi/tagbar'
@@ -265,6 +265,21 @@ endif
 
 " vim-gutentags settings
 let g:gutentags_cache_dir = '~/.vim/tags'
+
+" vim-dirvish settings
+
+" Sort directories before files, ignoring case.
+let g:dirvish_mode = ':sort ir /^.*[^\/]$/'
+
+augroup ft_dirvish
+  autocmd!
+
+  " Map + to create a new file.
+  autocmd FileType dirvish nnoremap <buffer> + :edit %
+
+  " Map gh to hide dotfiles.
+  autocmd FileType dirvish nnoremap <buffer> <silent> gh :silent :keeppatterns g@\v/\.[^\/]+/?$@d<cr>
+augroup END
 
 " Automatically reload .vimrc.
 augroup reload_vimrc
