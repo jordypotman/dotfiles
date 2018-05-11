@@ -30,19 +30,6 @@ if [ "$LC_CTYPE" = "UTF-8" ]; then
   LC_CTYPE=en_US.UTF-8
 fi
 
-# Configure homebrew-cask to install to these directories in the root instead
-# of the equivalent directories in home.
-HCO="--appdir=/Applications"
-HCO="$HCO --colorpickerdir=/Library/ColorPickers"
-HCO="$HCO --prefpanedir=/Library/PreferencePanes"
-HCO="$HCO --qlplugindir=/Library/QuickLook"
-HCO="$HCO --fontdir=/Library/Fonts"
-HCO="$HCO --servicedir=/Library/Services"
-HCO="$HCO --input_methoddir='/Library/Input Methods'"
-HCO="$HCO --internet_plugindir='/Library/Internet Plug-Ins'"
-HCO="$HCO --screen_saverdir='/Library/Screen Savers'"
-export HOMEBREW_CASK_OPTS="$HCO"
-
 # Source local profile settings from .profile.local if it is readable.
 if [ -r "$HOME/.profile.local" ]; then
   . "$HOME/.profile.local"
