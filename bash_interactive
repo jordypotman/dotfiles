@@ -5,6 +5,16 @@
 # anything if not running interactively.
 [ -z "$PS1" ] && return
 
+# Restore the previously selected terminal color scheme or set the default
+# terminal color scheme if the toolbox termcolors script is available.
+if [ -x ~/toolbox/bin/termcolors ]; then
+  if [ -r ~/.termcolors ]; then
+    termcolors $(head -1 ~/.termcolors)
+  else
+    termcolors tomorrow-night
+  fi
+fi
+
 # Check the window size after each command and if necessary update the values
 # of LINES and COLUMNS.
 shopt -s checkwinsize
