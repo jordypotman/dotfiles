@@ -37,8 +37,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " A collection of themes for vim-airline.
   Plug 'vim-airline/vim-airline-themes'
 
-  " Precision colorscheme.
-  Plug 'altercation/vim-colors-solarized'
+  " Base16 for Vim.
+  Plug 'chriskempson/base16-vim'
 
   " Automatically adjust 'shiftwidth' and 'expandtab'.
   Plug 'tpope/vim-sleuth'
@@ -160,12 +160,32 @@ set colorcolumn=81
 " Turn wrapping of lines longer than the width of the window off.
 set nowrap
 
-" Use colors which look good on dark backgrounds.
-set background=dark
+" Set the color scheme based on the terminal color scheme.
+" Based on: https://github.com/wincent/wincent/blob/f18eb9515df8b5e29c8d342ae726b07f9dd4096a/roles/dotfiles/files/.vim/after/plugin/color.vim
+function s:CheckColorScheme()
+  if !has('termguicolors')
+    let g:base16colorspace=256
+  endif
 
-" Try to set the colorscheme to solarized but do not report an error if it is
-" not available.
-silent! colorscheme solarized
+  let l:termcolors_config_file = expand('~/.termcolors')
+
+  if filereadable(l:termcolors_config_file)
+    let l:termcolors_config = readfile(l:termcolors_config_file)
+    if empty(l:termcolors_config)
+      echoerr 'Invalid termcolors config file ' . l:termcolors_config_file
+      return
+    endif
+    let l:color_scheme = l:termcolors_config[0]
+    execute 'colorscheme base16-' . l:color_scheme
+  endif
+endfunction
+
+augroup check_color_scheme
+  autocmd!
+  autocmd FocusGained * call s:CheckColorScheme()
+augroup END
+
+call s:CheckColorScheme()
 
 " Enable the use of the mouse in all four modes.
 set mouse=a
