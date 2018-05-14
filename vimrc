@@ -240,6 +240,11 @@ if has('folding')
   set foldlevelstart=99
 endif
 
+" Ignore case in search patterns unless the pattern contains upper case
+" characters.
+set ignorecase
+set smartcase
+
 " Let C-n and C-p filter command history.
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
