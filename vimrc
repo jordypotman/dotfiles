@@ -175,7 +175,7 @@ if has('autocmd')
     autocmd!
 
     if exists('+colorcolumn')
-      autocmd BufEnter,FocusGained,VimEnter,WinEnter * if s:JPShouldColorColumn() | let &l:colorcolumn='+' . join(range(0,254), ',+') | endif
+      autocmd BufEnter,FocusGained,VimEnter,WinEnter * if s:JPShouldColorColumn() | let &l:colorcolumn='+' . join(range(1, 255), ',+') | endif
       autocmd FocusLost,WinLeave * if s:JPShouldColorColumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
     endif
     autocmd InsertLeave,VimEnter,WinEnter * if s:JPShouldCursorLine() | setlocal cursorline | endif
