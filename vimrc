@@ -44,10 +44,12 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   Plug 'tpope/vim-sleuth'
 
   " Automatic management of tag files.
-  Plug 'ludovicchabant/vim-gutentags'
+  if v:version >= 704 && executable('ctags')
+    Plug 'ludovicchabant/vim-gutentags'
+  endif
 
   " Fast, as-you-type, fuzzy-search code completion engine.
-  if v:version > 704 || v:version == 704 && has('patch143')
+  if (v:version > 704 || v:version == 704 && has('patch143')) && has('python')
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
   endif
 
@@ -146,9 +148,11 @@ if !isdirectory(expand(&directory))
 endif
 
 " Set undo directory and create it if it does not exist yet.
-set undodir=~/.vim/undo//
-if !isdirectory(expand(&undodir))
-  call mkdir(expand(&undodir), "p")
+if exists('&undodir')
+  set undodir=~/.vim/undo//
+  if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+  endif
 endif
 
 " Enable line numbering.
@@ -189,7 +193,11 @@ set nowrap
 " Set the color scheme based on the terminal color scheme.
 " Based on: https://github.com/wincent/wincent/blob/f18eb9515df8b5e29c8d342ae726b07f9dd4096a/roles/dotfiles/files/.vim/after/plugin/color.vim
 function! s:CheckColorScheme()
-  if !has('termguicolors')
+  if has('termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+  else
     let g:base16colorspace=256
   endif
 
@@ -214,7 +222,9 @@ augroup END
 call s:CheckColorScheme()
 
 " Enable the use of the mouse in all four modes.
-set mouse=a
+if has('mouse')
+  set mouse=a
+endif
 
 " Enable resizing split panes by dragging in tmux.
 " See: http://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
