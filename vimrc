@@ -272,6 +272,11 @@ cnoremap <C-n> <Down>
 " The normal use of S is covered by cc, so don't worry about shadowing it.
 map S i<CR><Esc>
 
+" Show the path of the current file. Useful when the file path in the status
+" line gets truncated.
+" From: https://github.com/wincent/wincent/blob/9d05971e45545929b25e4e8e129ff8366d973b4b/roles/dotfiles/files/.vim/plugin/mappings/leader.vim
+nnoremap <Leader>p :echo expand('%')<CR>
+
 " Airline settings
 let g:airline_left_sep=''
 let g:airline_right_sep=''
