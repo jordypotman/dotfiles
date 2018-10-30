@@ -117,6 +117,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug '~/toolbox/share/llvm/vim'
   endif
 
+  " Syntax checking and highlighting for OpenCL files.
+  Plug 'petRUShka/vim-opencl'
+
   " Rust file detection, syntax highlighting, formatting, Syntastic
   " integration, and more.
   Plug 'rust-lang/rust.vim'
