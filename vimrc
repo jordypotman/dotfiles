@@ -282,6 +282,9 @@ let NERDTreeHijackNetrw = 0
 " Syntastic settings
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = {
+  \ "mode": "active",
+  \ "passive_filetypes": ["asm"] }
 
 " vim-instant-markdown settings
 let g:instant_markdown_autostart = 0
