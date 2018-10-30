@@ -71,6 +71,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " A vim-perforce integration plugin.
   Plug 'ngemily/vim-vp4'
 
+  " Show a diff using Vim its sign column.
+  Plug 'mhinz/vim-signify'
+
   " Directory viewer.
   Plug 'justinmk/vim-dirvish'
 
@@ -329,6 +332,10 @@ endif
 
 " vim-gutentags settings
 let g:gutentags_cache_dir = '~/.vim/tags'
+
+" vim-signify settings
+let g:signify_vcs_list = [ 'git', 'perforce' ]
+let g:signify_realtime = 1
 
 " vim-dirvish settings
 
