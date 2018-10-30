@@ -68,6 +68,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Git wrapper.
   Plug 'tpope/vim-fugitive'
 
+  " A vim-perforce integration plugin.
+  Plug 'ngemily/vim-vp4'
+
   " Directory viewer.
   Plug 'justinmk/vim-dirvish'
 
