@@ -56,6 +56,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Seamless navigation between tmux panes and vim splits.
   Plug 'christoomey/vim-tmux-navigator'
 
+  " Provides pseudo clipboard registers such as "& for the tmux paste buffer.
+  Plug 'kana/vim-fakeclip'
+
   " Filesystem tree explorer.
   Plug 'scrooloose/nerdtree'
 
