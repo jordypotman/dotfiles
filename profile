@@ -30,6 +30,10 @@ if [ "$LC_CTYPE" = "UTF-8" ]; then
   LC_CTYPE=en_US.UTF-8
 fi
 
+if command -v vim >/dev/null 2>&1; then
+  export VISUAL=vim
+fi
+
 # Source local profile settings from .profile.local if it is readable.
 if [ -r "$HOME/.profile.local" ]; then
   . "$HOME/.profile.local"
