@@ -90,6 +90,18 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Alias for managing dotfiles directly in $HOME using Git.
+#
+# To set up on a new machine:
+# $ git clone --no-checkout --separate-git-dir=$HOME/.dotfiles <git-repo-url> tmp-dotfiles
+# $ rm -rf tmp-dotfiles
+# $ alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+# $ dotfiles checkout
+# $ dotfiles config status.showUntrackedFiles no
+#
+# Based on: https://www.atlassian.com/git/tutorials/dotfiles
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
 # Source additional aliases from ~/.bash_aliases if it exists.
 if [ -r ~/.bash_aliases ]; then
   source ~/.bash_aliases
