@@ -1,1 +1,0 @@
-# Jordy Potman's dotfiles

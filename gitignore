@@ -1,4 +1,0 @@
-# Ignore ctags tags files.
-tags
-# Do not ignore tags directories.
-!tags/
