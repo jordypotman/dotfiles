@@ -382,13 +382,6 @@ augroup ft_c_cpp
   autocmd!
   autocmd FileType c,cpp set cindent
   autocmd FileType c,cpp set comments^=:///
-  if filereadable(expand('~/toolbox/share/clang/clang-format.py'))
-    if has('python')
-      autocmd FileType c,cpp map <buffer> <leader>f :pyf ~/toolbox/share/clang/clang-format.py<CR>
-    elseif has('python3')
-      autocmd FileType c,cpp map <buffer> <leader>f :py3f ~/toolbox/share/clang/clang-format.py<CR>
-    endif
-  endif
 augroup END
 
 augroup ft_llvm_make
