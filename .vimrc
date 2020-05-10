@@ -220,6 +220,17 @@ map S i<CR><Esc>
 " From: https://github.com/wincent/wincent/blob/9d05971e45545929b25e4e8e129ff8366d973b4b/roles/dotfiles/files/.vim/plugin/mappings/leader.vim
 nnoremap <Leader>p :echo expand('%')<CR>
 
+" Make highlighted errors on current line readable when cursorline is enabled.
+function! s:JPBase16Customize() abort
+  " Colors: https://github.com/chriskempson/base16/blob/master/styling.md
+  " Arguments: group, guifg, guibg, ctermfg, ctermbg, attr, guisp
+  call Base16hi("Error", "", "", g:base16_cterm08, g:base16_cterm00, "reverse", "")
+endfunction
+
+augroup on_change_color_scheme
+  autocmd!
+  autocmd ColorScheme * call s:JPBase16Customize()
+augroup END
 
 " Set the color scheme based on the terminal color scheme.
 " Based on: https://github.com/wincent/wincent/blob/f18eb9515df8b5e29c8d342ae726b07f9dd4096a/roles/dotfiles/files/.vim/after/plugin/color.vim
