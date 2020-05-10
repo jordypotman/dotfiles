@@ -43,11 +43,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Automatically adjust 'shiftwidth' and 'expandtab'.
   Plug 'tpope/vim-sleuth'
 
-  " Automatic management of tag files.
-  if v:version >= 704 && executable('ctags')
-    Plug 'ludovicchabant/vim-gutentags'
-  endif
-
   " Normalize async job control api for vim and neovim.
   " Dependency for vim-lsp
   Plug 'prabirshrestha/async.vim'
@@ -76,9 +71,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Pairs of handy bracket mappings.
   Plug 'tpope/vim-unimpaired'
 
-  " Fuzzy file, buffer, most recently used, tag, etc finder.
-  Plug 'ctrlpvim/ctrlp.vim'
-
   " Git wrapper.
   Plug 'tpope/vim-fugitive'
 
@@ -91,18 +83,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Directory viewer.
   Plug 'justinmk/vim-dirvish'
 
-  " Sidebar that displays tags of the current file, ordered by scope.
-  Plug 'majutsushi/tagbar'
-
   " Asynchronous build and test dispatcher.
   Plug 'tpope/vim-dispatch'
-
-  " Run files through external syntax checkers and display any resulting
-  " errors.
-  Plug 'scrooloose/syntastic'
-
-  " Instant Markdown preview.
-  Plug 'suan/vim-instant-markdown'
 
   " Vim sugar for UNIX shell commands such as rm, mv, chmod, mkdir, find, etc.
   Plug 'tpope/vim-eunuch'
@@ -120,9 +102,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Dependency for vim-textobj-comment.
   Plug 'kana/vim-textobj-user'
 
-  " Syntax and makeprg support for PlantUML
-  Plug 'aklt/plantuml-syntax'
-
   " Personal Wiki for Vim.
   Plug 'vimwiki/vimwiki'
 
@@ -133,18 +112,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
   " Syntax checking and highlighting for OpenCL files.
   Plug 'petRUShka/vim-opencl'
-
-  " Rust file detection, syntax highlighting, formatting, Syntastic
-  " integration, and more.
-  Plug 'rust-lang/rust.vim'
-
-  " Front for ag, a.k.a. the_silver_searcher.
-  Plug 'rking/ag.vim'
-
-  " LLDB debugger integration.
-  if executable('lldb')
-    Plug 'gilligan/vim-lldb'
-  endif
 
   call plug#end()
 endif
@@ -310,22 +277,6 @@ let g:airline_right_sep=''
 " NERDTree settings
 let NERDTreeHijackNetrw = 0
 
-" Syntastic settings
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = {
-  \ "mode": "active",
-  \ "passive_filetypes": ["asm"] }
-
-" vim-instant-markdown settings
-let g:instant_markdown_autostart = 0
-
-" vim-lldb mappings
-let g:lldb_map_Lbreakpoint = "<leader>b"
-let g:lldb_map_Lcontinue = "<leader>c"
-let g:lldb_map_Lstep = "<leader>s"
-let g:lldb_map_Lnext = "<leader>n"
-
 " Vimwiki settings
 let g:vimwiki_global_ext = 0
 
@@ -366,9 +317,6 @@ endif
 if isdirectory(expand(recore_wiki.path))
   let g:vimwiki_list += [recore_wiki]
 endif
-
-" vim-gutentags settings
-let g:gutentags_cache_dir = '~/.vim/tags'
 
 " vim-lsp settings
 if executable('clangd')
@@ -434,7 +382,6 @@ augroup ft_c_cpp
   autocmd!
   autocmd FileType c,cpp set cindent
   autocmd FileType c,cpp set comments^=:///
-  autocmd FileType c,cpp nnoremap <buffer> <leader>g :YcmCompleter GoTo<CR>
   if filereadable(expand('~/toolbox/share/clang/clang-format.py'))
     if has('python')
       autocmd FileType c,cpp map <buffer> <leader>f :pyf ~/toolbox/share/clang/clang-format.py<CR>
