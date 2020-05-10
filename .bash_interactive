@@ -93,7 +93,8 @@ alias l='ls -CF'
 # Alias for managing dotfiles directly in $HOME using Git.
 #
 # To set up on a new machine:
-# $ git clone --no-checkout --separate-git-dir=$HOME/.dotfiles <git-repo-url> tmp-dotfiles
+# $ git clone --no-checkout <git-repo-url> tmp-dotfiles
+# $ mv tmp-dotfiles/.git .dotfiles
 # $ rm -rf tmp-dotfiles
 # $ alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 # $ dotfiles checkout
