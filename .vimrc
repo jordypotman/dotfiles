@@ -220,34 +220,6 @@ map S i<CR><Esc>
 " From: https://github.com/wincent/wincent/blob/9d05971e45545929b25e4e8e129ff8366d973b4b/roles/dotfiles/files/.vim/plugin/mappings/leader.vim
 nnoremap <Leader>p :echo expand('%')<CR>
 
-" Make focussed window more obvious by starting the colorcolumn from
-" column 1 and disabling the cursorline in unfocussed windows.
-" Based on: https://github.com/wincent/wincent/blob/2aa44544fe9e8fc466fea42391e66fff3583054c/roles/dotfiles/files/.vim/plugin/autocmds.vim
-" and: https://github.com/wincent/wincent/blob/2aa44544fe9e8fc466fea42391e66fff3583054c/roles/dotfiles/files/.vim/autoload/autocmds.vim
-let g:JPColorColumnBlacklist = ['diff', 'nerdtree', 'qf']
-
-function! s:JPShouldColorColumn() abort
-  return index(g:JPColorColumnBlacklist, &filetype) == -1
-endfunction
-
-let g:JPCursorlineBlacklist = []
-
-function! s:JPShouldCursorLine() abort
-  return index(g:JPCursorlineBlacklist, &filetype) == -1
-endfunction
-
-if has('autocmd')
-  augroup jp_focus
-    autocmd!
-
-    if exists('+colorcolumn')
-      autocmd BufEnter,FocusGained,VimEnter,WinEnter * if s:JPShouldColorColumn() | let &l:colorcolumn='+' . join(range(1, 255), ',+') | endif
-      autocmd FocusLost,WinLeave * if s:JPShouldColorColumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
-    endif
-    autocmd InsertLeave,VimEnter,WinEnter * if s:JPShouldCursorLine() | setlocal cursorline | endif
-    autocmd InsertEnter,WinLeave * if s:JPShouldCursorLine() | setlocal nocursorline | endif
-  augroup END
-endif
 
 " Set the color scheme based on the terminal color scheme.
 " Based on: https://github.com/wincent/wincent/blob/f18eb9515df8b5e29c8d342ae726b07f9dd4096a/roles/dotfiles/files/.vim/after/plugin/color.vim
@@ -279,6 +251,35 @@ augroup check_color_scheme
 augroup END
 
 call s:CheckColorScheme()
+
+" Make focussed window more obvious by starting the colorcolumn from
+" column 1 and disabling the cursorline in unfocussed windows.
+" Based on: https://github.com/wincent/wincent/blob/2aa44544fe9e8fc466fea42391e66fff3583054c/roles/dotfiles/files/.vim/plugin/autocmds.vim
+" and: https://github.com/wincent/wincent/blob/2aa44544fe9e8fc466fea42391e66fff3583054c/roles/dotfiles/files/.vim/autoload/autocmds.vim
+let g:JPColorColumnBlacklist = ['diff', 'nerdtree', 'qf']
+
+function! s:JPShouldColorColumn() abort
+  return index(g:JPColorColumnBlacklist, &filetype) == -1
+endfunction
+
+let g:JPCursorlineBlacklist = []
+
+function! s:JPShouldCursorLine() abort
+  return index(g:JPCursorlineBlacklist, &filetype) == -1
+endfunction
+
+if has('autocmd')
+  augroup jp_focus
+    autocmd!
+
+    if exists('+colorcolumn')
+      autocmd BufEnter,FocusGained,VimEnter,WinEnter * if s:JPShouldColorColumn() | let &l:colorcolumn='+' . join(range(1, 255), ',+') | endif
+      autocmd FocusLost,WinLeave * if s:JPShouldColorColumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
+    endif
+    autocmd InsertLeave,VimEnter,WinEnter * if s:JPShouldCursorLine() | setlocal cursorline | endif
+    autocmd InsertEnter,WinLeave * if s:JPShouldCursorLine() | setlocal nocursorline | endif
+  augroup END
+endif
 
 " Airline settings
 let g:airline_left_sep=''
