@@ -48,10 +48,21 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ludovicchabant/vim-gutentags'
   endif
 
-  " Fast, as-you-type, fuzzy-search code completion engine.
-  if (v:version > 704 || v:version == 704 && has('patch143')) && has('python')
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-  endif
+  " Normalize async job control api for vim and neovim.
+  " Dependency for vim-lsp
+  Plug 'prabirshrestha/async.vim'
+
+  " Async Language Server Protocol plugin for vim 8 and neovim.
+  Plug 'prabirshrestha/vim-lsp'
+
+  " Async completion in pure vim script for vim8 and neovim.
+  Plug 'prabirshrestha/asyncomplete.vim'
+
+  " Provides buffer autocomplete for asyncomplete.vim.
+  Plug 'prabirshrestha/asyncomplete-buffer.vim'
+
+  " LSP source for asyncomplete.vim.
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
   " Seamless navigation between tmux panes and vim splits.
   Plug 'christoomey/vim-tmux-navigator'
@@ -358,6 +369,41 @@ endif
 
 " vim-gutentags settings
 let g:gutentags_cache_dir = '~/.vim/tags'
+
+" vim-lsp settings
+if executable('clangd')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'cland',
+    \ 'cmd': {server_info->['clangd', '-background-index']},
+    \ 'whitelist': ['c', 'cpp'],
+    \ })
+endif
+
+function s:on_lsp_buffer_enabled() abort
+  nmap <buffer> <leader>lgd <plug>(lsp-definition)
+endfunction
+
+augroup lsp_install
+  au!
+  " call s:on_lsp_buffer_enabled only for languages that have a server
+  " registered.
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" asyncomplete.vim settings
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR>    pumvisible() ? !empty(v:completed_item) ? "\<C-y>" : "\<C-y>\<CR>" : "\<CR>"
+
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+\ 'name': 'buffer',
+\ 'whitelist': ['*'],
+\ 'blacklist': [],
+\ 'completor': function('asyncomplete#sources#buffer#completor'),
+\ 'config': {
+\    'max_buffer_size': 5000000,
+\  },
+\ }))
 
 " vim-signify settings
 let g:signify_vcs_list = [ 'git', 'perforce' ]
