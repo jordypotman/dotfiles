@@ -15,6 +15,15 @@ if [ -r "$HOME/toolbox/toolbox.profile" ]; then
   . $HOME/toolbox/toolbox.profile
 fi
 
+# Add $HOME/.bin to the front of $PATH if it exists and $PATH does not already
+# contain $HOME/.bin .
+if [ -d "$HOME/.bin" ]; then
+  case ":$PATH:" in
+    *:$HOME/.bin:*) ;;
+    *) export PATH=$HOME/.bin:$PATH ;;
+  esac
+fi
+
 # Add $HOME/bin to the front of $PATH if it exists and $PATH does not already
 # contain $HOME/bin .
 if [ -d "$HOME/bin" ]; then

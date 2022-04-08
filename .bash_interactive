@@ -6,12 +6,12 @@
 [ -z "$PS1" ] && return
 
 # Restore the previously selected terminal color scheme or set the default
-# terminal color scheme if the toolbox termcolors script is available.
-if [ -x ~/toolbox/bin/termcolors ]; then
+# terminal color scheme if the termcolors script is available.
+if [ -x ~/.bin/termcolors ]; then
   if [ -r ~/.termcolors ]; then
-    termcolors $(head -1 ~/.termcolors)
+    ~/.bin/termcolors $(head -1 ~/.termcolors)
   else
-    termcolors tomorrow-night
+    ~/.bin/termcolors tomorrow-night
   fi
 fi
 
@@ -93,7 +93,7 @@ alias l='ls -CF'
 # Alias for managing dotfiles directly in $HOME using Git.
 #
 # To set up on a new machine:
-# $ git clone --no-checkout <git-repo-url> tmp-dotfiles
+# $ git clone --recurse-submodules --no-checkout <git-repo-url> tmp-dotfiles
 # $ mv tmp-dotfiles/.git .dotfiles
 # $ rm -rf tmp-dotfiles
 # $ alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'

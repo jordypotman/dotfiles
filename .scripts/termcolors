@@ -1,0 +1,52 @@
+#!/bin/sh
+# Based on: https://github.com/wincent/wincent/blob/f18eb9515df8b5e29c8d342ae726b07f9dd4096a/roles/dotfiles/files/.zsh/colors
+
+BASE16_SHELL_SCRIPTS_DIR="$HOME/.base16-shell/scripts"
+TERMCOLORS_CONFIG_FILE="$HOME/.termcolors"
+
+set_termcolors() {
+  local color_scheme="$1"
+  local color_scheme_file="$BASE16_SHELL_SCRIPTS_DIR/base16-$color_scheme.sh"
+  if [ -e "$color_scheme_file" ]; then
+    sh "$color_scheme_file"
+    echo "$color_scheme" > "$TERMCOLORS_CONFIG_FILE"
+  else
+    echo "error: color scheme '$color_scheme' not found in $BASE16_SHELL_SCRIPTS_DIR"
+  fi
+}
+
+termcolors() {
+  local command="$1"
+
+  if [ $# -eq 0 ]; then
+    if [ -s $TERMCOLORS_CONFIG_FILE ]; then
+      cat "$TERMCOLORS_CONFIG_FILE"
+      return
+    else
+      command=help
+    fi
+  fi
+
+  case "$command" in
+  help)
+    echo 'termcolors [tomorrow-night|...]'
+    echo
+    echo 'Available color schemes:'
+    termcolors ls
+    return
+    ;;
+  ls)
+    find "$BASE16_SHELL_SCRIPTS_DIR" -name 'base16-*.sh' | \
+      sed -E 's|.+/base16-||' | \
+      sed -E 's/\.sh//' | \
+      sort |
+      column
+    ;;
+  *)
+    local color_scheme="$command"
+    set_termcolors "$color_scheme"
+    ;;
+  esac
+}
+
+termcolors "$@"
