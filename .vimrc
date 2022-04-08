@@ -319,6 +319,8 @@ if isdirectory(expand(recore_wiki.path))
 endif
 
 " vim-lsp settings
+let g:lsp_diagnostics_echo_cursor = 1
+
 if executable('clangd')
   au User lsp_setup call lsp#register_server({
     \ 'name': 'cland',
