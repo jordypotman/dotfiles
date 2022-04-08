@@ -213,13 +213,13 @@ augroup END
 " Set the color scheme based on the terminal color scheme.
 " Based on: https://github.com/wincent/wincent/blob/f18eb9515df8b5e29c8d342ae726b07f9dd4096a/roles/dotfiles/files/.vim/after/plugin/color.vim
 function! s:CheckColorScheme()
-  if has('termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    set termguicolors
-  else
+"  if has('termguicolors')
+"    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"    set termguicolors
+"  else
     let g:base16colorspace=256
-  endif
+"  endif
 
   let l:termcolors_config_file = expand('~/.termcolors')
 
