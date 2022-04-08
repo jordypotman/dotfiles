@@ -323,7 +323,7 @@ let g:lsp_diagnostics_echo_cursor = 1
 
 if executable('clangd')
   au User lsp_setup call lsp#register_server({
-    \ 'name': 'cland',
+    \ 'name': 'clangd',
     \ 'cmd': {server_info->['clangd', '-background-index']},
     \ 'whitelist': ['c', 'cpp'],
     \ })
