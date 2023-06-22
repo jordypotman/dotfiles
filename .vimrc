@@ -404,3 +404,7 @@ augroup ft_markdown
   " Set filetype of *.md files to Markdown instead of Modula-2.
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
+
+if has("patch-8.1.0360")
+  set diffopt+=internal,algorithm:patience
+endif
