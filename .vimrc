@@ -113,6 +113,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
   " Syntax checking and highlighting for OpenCL files.
   Plug 'petRUShka/vim-opencl'
 
+  Plug 'rickhowe/diffchar.vim'
+
   call plug#end()
 endif
 
