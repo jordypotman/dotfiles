@@ -357,6 +357,10 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
 \  },
 \ }))
 
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
 " vim-signify settings
 let g:signify_vcs_list = [ 'git', 'perforce' ]
 let g:signify_realtime = 1
