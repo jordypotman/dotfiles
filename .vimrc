@@ -165,7 +165,7 @@ set smartcase
 set autoread
 
 " Automatically write files before commands such as :make.
-set autowrite
+"set autowrite " Disabled because it also seems to write files when switching Vim windoes
 
 " Set backup directory and create it if it does not exist yet.
 set backupdir=~/.vim/backup//
