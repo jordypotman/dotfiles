@@ -43,7 +43,9 @@ if [ "$LC_CTYPE" = "UTF-8" ]; then
   LC_CTYPE=en_US.UTF-8
 fi
 
-if command -v vim >/dev/null 2>&1; then
+if command -v nvim >/dev/null 2>&1; then
+  export VISUAL=nvim
+elif command -v vim >/dev/null 2>&1; then
   export VISUAL=vim
 fi
 
