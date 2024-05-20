@@ -1,3 +1,5 @@
+-- A completion engine plugin for neovim.
+-- Based on: https://lsp-zero.netlify.app/v3.x/guide/lazy-loading-with-lazy-nvim.html
 local Plugin = {'hrsh7th/nvim-cmp'}
 
 Plugin.dependencies = {
@@ -7,7 +9,7 @@ Plugin.dependencies = {
 
 Plugin.event = 'InsertEnter'
 
-Plugin.config = function()
+function Plugin.config()
   local lsp_zero = require('lsp-zero')
   lsp_zero.extend_cmp()
 
@@ -24,7 +26,7 @@ Plugin.config = function()
     mapping = cmp.mapping.preset.insert({
       ['<Tab>'] = cmp_action.tab_complete(),
       ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
-      ['<CR>'] = cmp.mapping.confirm({select = true})
+      ['<CR>'] = cmp.mapping.confirm()
     })
   })
 end
