@@ -43,13 +43,11 @@ if [ "$LC_CTYPE" = "UTF-8" ]; then
   LC_CTYPE=en_US.UTF-8
 fi
 
-if command -v nvim >/dev/null 2>&1; then
-  export VISUAL=nvim
-elif command -v vim >/dev/null 2>&1; then
-  export VISUAL=vim
-fi
-
 # Source local profile settings from .profile.local if it is readable.
 if [ -r "$HOME/.profile.local" ]; then
   . "$HOME/.profile.local"
 fi
+
+# Source .profile.last for any profile settings that should be set after
+# .profile.local has been sourced.
+. "$HOME/.profile.last"
