@@ -25,13 +25,18 @@ function settings.setup()
   vim.opt.splitright = true
   vim.opt.splitbelow = true
 
-  -- Don't show the mode, since it's already in the status line.
-  vim.opt.showmode = false
-
   -- Complete till longest common string, showing all matches in wildmenu on
   -- first press of <Tab>, complete the next full match on second press of <Tab>.
   -- See: http://stackoverflow.com/questions/526858
   vim.opt.wildmode = 'longest:full,full'
+
+  -- Start scrolling when the cursor is one line from the top or bottom of the
+  -- window.
+  vim.opt.scrolloff = 1
+
+  -- Start scrolling when the cursor is one column from the left or right of the
+  -- windows.
+  vim.opt.sidescrolloff=2
 end
 
 return settings
