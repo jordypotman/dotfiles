@@ -11,8 +11,6 @@ Plugin.opts = {
   }
 }
 
-Plugin.cmd = { 'Oil' }
-
 function Plugin.init()
   vim.keymap.set('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
 end
