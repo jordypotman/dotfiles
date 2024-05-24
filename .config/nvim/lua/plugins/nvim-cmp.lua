@@ -4,7 +4,8 @@ local Plugin = {'hrsh7th/nvim-cmp'}
 
 Plugin.dependencies = {
   {'L3MON4D3/LuaSnip'},
-  {'hrsh7th/cmp-buffer'}
+  {'hrsh7th/cmp-buffer'},
+  {'hrsh7th/cmp-path'}
 }
 
 Plugin.event = 'InsertEnter'
@@ -14,13 +15,14 @@ function Plugin.config()
   lsp_zero.extend_cmp()
 
   local cmp = require('cmp')
-  local cam_format = lsp_zero.cmp_format({details = true})
+  local cmp_format = lsp_zero.cmp_format({details = true})
   local cmp_action = lsp_zero.cmp_action()
 
   cmp.setup({
     sources  = {
       {name = 'nvim_lsp'},
-      {name = 'buffer'}
+      {name = 'buffer'},
+      {name = 'path'}
     },
     formatting = cmp_format,
     mapping = cmp.mapping.preset.insert({
