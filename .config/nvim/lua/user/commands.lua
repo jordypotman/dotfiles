@@ -1,6 +1,12 @@
 local commands = {}
 
 function commands.setup()
+
+  vim.api.nvim_create_user_command('DiagnosticsToggle',
+    function()
+      vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    end, {})
+
   -- Make focussed window more obvious by starting the colorcolumn from
   -- column 1 and disabling the cursorline in unfocussed windows.
   -- Based on: https://github.com/wincent/wincent/blob/2aa44544fe9e8fc466fea42391e66fff3583054c/roles/dotfiles/files/.vim/plugin/autocmds.vim
