@@ -21,7 +21,7 @@ function lazy.install(path)
       '--branch=stable', -- latest stable release
       path,
     })
-    printf('Done.')
+    print('Done.')
   end
 end
 
