@@ -37,6 +37,10 @@ function settings.setup()
   -- Start scrolling when the cursor is one column from the left or right of the
   -- windows.
   vim.opt.sidescrolloff=2
+
+  -- Sort diagnostics by severity so signs and virtual text display the
+  -- diagnostics with the highest severity.
+  vim.diagnostic.config({ severity_sort = true })
 end
 
 return settings
