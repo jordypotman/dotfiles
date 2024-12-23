@@ -2,10 +2,6 @@
 #
 # This file is not read by bash if ~/.bash_profile or ~/.bash_login exits.
 
-[ $JORDY_PROFILE_EXECUTED ] && return
-
-export JORDY_PROFILE_EXECUTED=1
-
 # On OS X /etc/profile contains the code below without the PATH="". This causes
 # duplicate $PATH entries when $PATH is already set. So call path_helper again
 # with an empty $PATH to avoid ending up with duplicate entries.
