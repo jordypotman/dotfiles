@@ -10,6 +10,14 @@ if [ -x /usr/libexec/path_helper ]; then
   eval `/usr/libexec/path_helper -s`
 fi
 
+# Add /opt/homebrew/bin to the front of $PATH if it exists and $PATH does not already
+# contain /opt/homebrew/bin .
+jordy_prepend_path "/opt/homebrew/bin"
+
+# Add /opt/homebrew/sbin to the front of $PATH if it exists and $PATH does not already
+# contain /opt/homebrew/sbin .
+jordy_prepend_path "/opt/homebrew/sbin"
+
 # Source $HOME/toolbox/toolbox.profile if is readable.
 if [ -r "$HOME/toolbox/toolbox.profile" ]; then
   . $HOME/toolbox/toolbox.profile
@@ -17,21 +25,11 @@ fi
 
 # Add $HOME/.bin to the front of $PATH if it exists and $PATH does not already
 # contain $HOME/.bin .
-if [ -d "$HOME/.bin" ]; then
-  case ":$PATH:" in
-    *:$HOME/.bin:*) ;;
-    *) export PATH=$HOME/.bin:$PATH ;;
-  esac
-fi
+jordy_prepend_path "$HOME/.bin"
 
 # Add $HOME/bin to the front of $PATH if it exists and $PATH does not already
 # contain $HOME/bin .
-if [ -d "$HOME/bin" ]; then
-  case ":$PATH:" in
-    *:$HOME/bin:*) ;;
-    *) export PATH=$HOME/bin:$PATH ;;
-  esac
-fi
+jordy_prepend_path "$HOME/bin"
 
 # On OS X the LC_CTYPE environment variable is set to UTF-8 by default. This is
 # not supported on Linux so set it to en_US.UTF-8 instead.
