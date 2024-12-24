@@ -19,8 +19,46 @@ fi
 # of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Set prompt to username@hostname:workingdirectory.
-PS1='\u@\h:\w\$ '
+# Do not modify the shell prompt in the virtual env activate script because the
+# virtual env is already included in the prompt by code to set the prompt
+# below.
+VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# Function to set variables for use in the prompt.
+jordy_prompt_command() {
+  local exit_status=$?
+  case $exit_status in
+    0) JORDY_PROMPT_EXIT_STATUS="✔" ;; # u2714
+    *) JORDY_PROMPT_EXIT_STATUS="✕" ;; # u2715
+  esac
+  JORDY_PROMPT_ENV=""
+  if [ -n "$JORDY_ENV_PROMPT" ]; then
+    JORDY_PROMPT_ENV+=" $JORDY_ENV_PROMPT"
+  fi
+  if [ -n "$VIRTUAL_ENV_PROMPT" ]; then
+    JORDY_PROMPT_ENV+=" $VIRTUAL_ENV_PROMPT"
+  fi
+  JORDY_PROMPT_ENV="${JORDY_PROMPT_ENV# }"
+  if [ -n "$JORDY_PROMPT_ENV" ]; then
+    JORDY_PROMPT_ENV="($JORDY_PROMPT_ENV) "
+  fi
+}
+
+# Append an entry to the $PROMPT_COMMAND variable.
+jordy_append_to_prompt_command() {
+  if [[ -n $PROMPT_COMMAND && $PROMPT_COMMAND != *"$1"* ]]; then
+    PROMPT_COMMAND+="; $1"
+  else
+    PROMPT_COMMAND="$1"
+  fi
+}
+
+# Append the jordy_prompt_command function to the $PROMPT_COMMAND variable so
+# it is run just before the prompt is printed.
+jordy_append_to_prompt_command "jordy_prompt_command"
+
+# Set prompt to exit status time env username@hostname:workingdirectory.
+PS1='$JORDY_PROMPT_EXIT_STATUS \t ${JORDY_PROMPT_ENV}\u@\h:\w\n\$ '
 
 # If this is a GUI terminal set the title to username@hostname:workingdirectory.
 case "$TERM" in
@@ -63,11 +101,7 @@ shopt -s histappend
 
 # Append the just executed command to the history file when displaying a new
 # prompt.
-if [[ -n $PROMPT_COMMAND && $PROMPT_COMMAND != *"history -a;"* ]]; then
-  PROMPT_COMMAND="$PROMPT_COMMAND; history -a; "
-else
-  PROMPT_COMMAND="history -a; "
-fi
+jordy_append_to_prompt_command "history -a"
 
 # Setup colors for ls using the dircolors command if available.
 if [ -x /usr/bin/dircolors ]; then
