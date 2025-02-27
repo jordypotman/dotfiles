@@ -4,6 +4,9 @@ local lazy = {}
 lazy.path = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
 lazy.opts = {
+  install = {
+    missing = false,
+  },
   change_detection = {
     enabled = false, -- check for config file changes
     notify = false,  -- get a notification when changes are found
@@ -27,7 +30,7 @@ end
 
 function lazy.setup(plugins)
   -- The line below can be commented out after lazy.nvim is installed.
-  lazy.install(lazy.path)
+  -- lazy.install(lazy.path)
 
   vim.opt.rtp:prepend(lazy.path)
 
