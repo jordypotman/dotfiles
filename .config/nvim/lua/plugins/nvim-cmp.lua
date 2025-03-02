@@ -1,11 +1,13 @@
 -- A completion engine plugin for neovim.
 -- Based on: https://lsp-zero.netlify.app/v3.x/guide/lazy-loading-with-lazy-nvim.html
+-- Partially based on: https://github.com/MariaSolOs/dotfiles/blob/e9eb1f8e027840f872e69e00e082e2be10237499/.config/nvim/lua/plugins/nvim-cmp.lua
 local Plugin = {'hrsh7th/nvim-cmp'}
 
 Plugin.dependencies = {
   {'L3MON4D3/LuaSnip'},
   {'hrsh7th/cmp-buffer'},
-  {'hrsh7th/cmp-path'}
+  {'hrsh7th/cmp-path'},
+  {'zbirenbaum/copilot-cmp'}
 }
 
 Plugin.event = 'InsertEnter'
@@ -22,17 +24,22 @@ function Plugin.config()
     sources  = {
       {name = 'nvim_lsp'},
       {name = 'buffer'},
-      {name = 'path'}
+      {name = 'path'},
+      {name = 'copilot'}
     },
     formatting = cmp_format,
     mapping = cmp.mapping.preset.insert({
+      -- Overload tab to accept Copilot suggestions.
       ['<Tab>'] = cmp.mapping(function(fallback)
+        local copilot_suggestion = require('copilot.suggestion')
         local has_words_before = function()
           unpack = unpack or table.unpack
           local line, col = unpack(vim.api.nvim_win_get_cursor(0))
           return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
-        if cmp.visible() then
+        if copilot_suggestion.is_visible() then
+          copilot_suggestion.accept()
+        elseif cmp.visible() then
           if #cmp.get_entries() == 1 then
             cmp.confirm({ select = true })
           else
