@@ -327,7 +327,7 @@ if executable('clangd')
   au User lsp_setup call lsp#register_server({
     \ 'name': 'clangd',
     \ 'cmd': {server_info->['clangd', '-background-index']},
-    \ 'whitelist': ['c', 'cpp'],
+    \ 'allowlist': ['c', 'cpp'],
     \ })
 endif
 
