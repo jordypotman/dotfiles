@@ -23,14 +23,19 @@ return {
       lualine_z = { '%3p%%', location }
     }
 
+    local sections = vim.deepcopy(common_sections)
+    sections.lualine_b = { 'branch', 'lsp_status', 'diff', 'diagnostics' }
+
+    local inactive_sections = common_sections
+
     return {
       options = {
         icons_enabled = true,
         section_separators = '',
         component_separators = ''
       },
-      sections = common_sections,
-      inactive_sections = common_sections,
+      sections = sections,
+      inactive_sections = inactive_sections
     }
   end,
 
