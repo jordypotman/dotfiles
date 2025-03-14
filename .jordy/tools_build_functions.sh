@@ -26,3 +26,25 @@ jordy_download_build_install_neovim() {
   ln -sfn "${dir_name}" neovim && \
   popd > /dev/null
 }
+
+jordy_download_build_install_curl() {
+  # https://curl.se/download/curl-8.12.1.tar.gz
+  CURL_SRC_URL="https://curl.se/download/"
+  CURL_VERSION="8.12.1"
+
+  tools_dir=$(jordy_get_tools_dir)
+  tools_curl_dir="${tools_dir}/curl"
+  archive_name="curl-${CURL_VERSION}.tar.gz"
+  dir_name="curl-${CURL_VERSION}"
+  install_prefix="${tools_curl_dir}/installs/${dir_name}"
+
+  mkdir -p "${tools_curl_dir}" && \
+  pushd "${tools_curl_dir}" > /dev/null && \
+  ([ -f "${archive_name}" ] || wget "${CURL_SRC_URL}${archive_name}") && \
+  ([ -d "${dir_name}" ] || tar zxf "${archive_name}") && \
+  cd "${dir_name}" && \
+  ([ -d "${install_prefix}" ] || CC=$(which gcc) ./configure --with-openssl --without-libpsl --prefix="${install_prefix}" && make install) && \
+  cd "${install_prefix}/.." && \
+  ln -sfn "${dir_name}" curl && \
+  popd > /dev/null
+}
