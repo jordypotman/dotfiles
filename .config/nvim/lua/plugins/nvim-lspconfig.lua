@@ -20,7 +20,6 @@ function Plugin.config()
     lsp_zero.default_keymaps({buffer = bufnr})
   end)
 
-  --require('lspconfig').clangd.setup({})
   require('mason-lspconfig').setup({
     ensure_installed = {},
     handlers = {
@@ -35,6 +34,22 @@ function Plugin.config()
       end
     }
   })
+
+  if vim.fn.executable('clangd') == 1 then
+    require('lspconfig').clangd.setup({})
+  end
+
+  if vim.fn.executable('tblgen-lsp-server') == 1 then
+    require('lspconfig').tblgen_lsp_server.setup({})
+  end
+
+  if vim.fn.executable('mlir-lsp-server') == 1 then
+    require('lspconfig').mlir_lsp_server.setup({})
+  end
+
+  if vim.fn.executable('mlir-pdll-lsp-server') == 1 then
+    require('lspconfig').mlir_pdll_lsp_server.setup({})
+  end
 end
 
 return Plugin
