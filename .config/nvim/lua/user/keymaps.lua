@@ -80,6 +80,18 @@ function keymaps.telescope.setup()
   vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 end
 
+keymaps.vim_tmux_navigator = {}
+
+function keymaps.vim_tmux_navigator.get_keys()
+  return {
+    { '<c-h>',  '<cmd><C-U>TmuxNavigateLeft<cr>' },
+    { '<c-j>',  '<cmd><C-U>TmuxNavigateDown<cr>' },
+    { '<c-k>',  '<cmd><C-U>TmuxNavigateUp<cr>' },
+    { '<c-l>',  '<cmd><C-U>TmuxNavigateRight<cr>' },
+    { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+  }
+end
+
 function keymaps.setup()
   keymaps.general.setup()
 end
