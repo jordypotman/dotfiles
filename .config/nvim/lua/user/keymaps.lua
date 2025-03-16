@@ -73,11 +73,12 @@ end
 
 keymaps.telescope = {}
 
-function keymaps.telescope.setup()
-  local builtin = require('telescope.builtin')
-  vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-  vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-  vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+function keymaps.telescope.get_keys()
+  return {
+    { '<leader>ff', '<cmd>Telescope find_files<cr>' },
+    { '<leader>fb', '<cmd>Telescope buffers<cr>' },
+    { '<leader>fh', '<cmd>Telescope help_tags<cr>' },
+  }
 end
 
 keymaps.vim_tmux_navigator = {}
