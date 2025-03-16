@@ -6,6 +6,7 @@ return {
     'nvim-neotest/nvim-nio', -- required dependency for nvim-dap-ui
     'jay-babu/mason-nvim-dap.nvim'
   },
+  keys = function() return require('user.keymaps').dap.get_keys() end,
   config = function()
     require('mason-nvim-dap').setup({
       ensure_installed = {},
@@ -17,7 +18,5 @@ return {
     dap.listeners.before['launch']['dapui_config'] = dapui.open
     dap.listeners.before['event_terminated']['dapui_config'] = dapui.close
     dap.listeners.before['event_exited']['dapui_config'] = dapui.close
-
-    require('user.keymaps').dap.setup()
   end
 }

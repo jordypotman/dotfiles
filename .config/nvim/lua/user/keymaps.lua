@@ -15,13 +15,14 @@ end
 
 keymaps.dap = {}
 
-function keymaps.dap.setup()
-  local dap = require('dap')
-  vim.keymap.set('n', '<leader>dc', dap.continue, {})
-  vim.keymap.set('n', '<leader>ds', dap.step_into, {})
-  vim.keymap.set('n', '<leader>dn', dap.step_over, {})
-  vim.keymap.set('n', '<leader>do', dap.step_out, {})
-  vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, {})
+function keymaps.dap.get_keys()
+  return {
+    { '<leader>dc', function() require('dap').continue() end },
+    { '<leader>ds', function() require('dap').step_into() end },
+    { '<leader>dn', function() require('dap').step_over() end },
+    { '<leader>do', function() require('dap').step_out() end },
+    { '<leader>db', function() require('dap').toggle_breakpoint() end },
+  }
 end
 
 keymaps.gitsigns = {}
