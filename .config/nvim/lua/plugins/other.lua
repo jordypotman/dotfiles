@@ -23,8 +23,6 @@ return {
   { 'tpope/vim-surround', dependencies = 'tpope/vim-repeat' },
   -- Provides pseudo clipboard registers such as '& for the tmux paste buffer.
   { 'kana/vim-fakeclip' },
-  -- Syntax checking and highlighting for OpenCL files.
-  { 'petRUShka/vim-opencl' },
   -- Highlight the exact differences, based on characters and words.
   { 'rickhowe/diffchar.vim' }
 }
