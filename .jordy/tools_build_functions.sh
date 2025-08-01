@@ -3,9 +3,9 @@ jordy_get_tools_dir() {
 }
 
 jordy_download_build_install_neovim() {
-  # https://github.com/neovim/neovim/archive/refs/tags/v0.10.4.tar.gz
+  # https://github.com/neovim/neovim/archive/refs/tags/v0.11.3.tar.gz
   NEOVIM_SRC_URL="https://github.com/neovim/neovim/archive/refs/tags/"
-  NEOVIM_VERSION="0.10.4"
+  NEOVIM_VERSION="0.11.3"
 
   tools_dir=$(jordy_get_tools_dir)
   tools_neovim_dir="${tools_dir}/neovim"
@@ -19,6 +19,7 @@ jordy_download_build_install_neovim() {
   ([ -d "${dir_name}" ] || tar zxf "${archive_name}") && \
   cd "${dir_name}" && \
   ([ -d "${install_prefix}" ] || CC=$(which gcc) make CMAKE_BUILD_TYPE=Release \
+  DEPS_CMAKE_FLAGS=-DTREESITTER_ARGS=-DCMAKE_C_FLAGS=-D_BSD_SOURCE \
   CMAKE_INSTALL_PREFIX="${install_prefix}" install) && \
   cd "${install_prefix}" && \
   ([ -L "lib" ] || ln -s lib64 lib) && \
