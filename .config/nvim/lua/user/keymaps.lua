@@ -72,6 +72,46 @@ function keymaps.gitsigns.setup(bufnr)
   map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 end
 
+keymaps.lsp = {}
+
+function keymaps.lsp.setup(buf)
+  local map = function(keys, func, desc, mode)
+    mode = mode or 'n'
+    vim.keymap.set(mode, keys, func, { buffer = buf, desc = desc })
+  end
+
+  -- Common lsp-zero / LazyVim LSP keymaps.
+  map('gd', vim.lsp.buf.definition, 'Goto Definition')
+  map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+  map('gr', vim.lsp.buf.references, 'References')
+
+  -- lsp-zero LSP keymaps.
+  map('gi', vim.lsp.buf.implementation, 'Goto Implementation')
+  map('go', vim.lsp.buf.type_definition, 'Goto Type Definition')
+  map('gs', vim.lsp.buf.signature_help, 'Signature Help')
+  map('<F2>', vim.lsp.buf.rename, 'Rename')
+  map('<F3>', vim.lsp.buf.format, 'Format', { 'n', 'x' })
+  map('<F4>', vim.lsp.buf.code_action, 'Code Action')
+  map('gl', vim.diagnostic.open_float, 'Show Diagnostic')
+
+  -- LazyVim LSP keymaps.
+  map('gI', vim.lsp.buf.implementation, 'Goto Implementation')
+  map('gy', vim.lsp.buf.type_definition, 'Goto T[y]pe Definition')
+  map('gK', vim.lsp.buf.signature_help, 'Signature Help')
+  map('<leader>cr', vim.lsp.buf.rename, 'Rename')
+
+  -- Neovim default LSP keymaps.
+  map('grn', vim.lsp.buf.rename, 'Rename')
+  map('gra', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+  map('grr', vim.lsp.buf.references, 'References')
+  map('gri', vim.lsp.buf.implementation, 'Goto Implementation')
+  map('grt', vim.lsp.buf.type_definition, 'Goto Type Definition')
+  map('gO', vim.lsp.buf.document_symbol, 'Open Document Symbols')
+  map('grd', vim.lsp.buf.definition, 'Goto Definition')
+  map('grD', vim.lsp.buf.declaration, 'Goto Declaration')
+  map('gW', vim.lsp.buf.workspace_symbol, 'Open Workspace Symbols')
+end
+
 keymaps.telescope = {}
 
 function keymaps.telescope.get_keys()
