@@ -18,7 +18,10 @@ return {
         }
       },
       panel = { enabled = false },
-      filetypes = { markdown = true }
+      filetypes = { markdown = true },
+      server_opts_overrides = {
+        offset_encoding = 'utf-16'
+      }
     },
     config = function(_, opts)
       local cmp = require('cmp')
