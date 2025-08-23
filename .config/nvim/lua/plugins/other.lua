@@ -19,8 +19,6 @@ return {
   { 'tpope/vim-dispatch' },
   -- Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
   { 'tpope/vim-surround', dependencies = 'tpope/vim-repeat' },
-  -- Provides pseudo clipboard registers such as '& for the tmux paste buffer.
-  { 'kana/vim-fakeclip' },
   -- Highlight the exact differences, based on characters and words.
   { 'rickhowe/diffchar.vim' }
 }
