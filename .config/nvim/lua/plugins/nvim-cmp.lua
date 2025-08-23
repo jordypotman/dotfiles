@@ -3,6 +3,7 @@
 -- Partially based on: https://github.com/MariaSolOs/dotfiles/blob/e9eb1f8e027840f872e69e00e082e2be10237499/.config/nvim/lua/plugins/nvim-cmp.lua
 return {
   'hrsh7th/nvim-cmp',
+  cond = vim.g.jordy_autocompletion == 'nvim-cmp',
   dependencies = {
     { 'L3MON4D3/LuaSnip' },
     { 'hrsh7th/cmp-buffer' },
