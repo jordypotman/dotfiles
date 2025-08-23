@@ -1,7 +1,6 @@
 return {
   -- Performant, batteries-included completion plugin for Neovim.
   'saghen/blink.cmp',
-  cond = vim.g.jordy_autocompletion == 'blink.cmp',
   version = '1.*',
   event = 'InsertEnter',
 

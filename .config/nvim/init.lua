@@ -1,9 +1,6 @@
 -- Jordy Potman's Neovim config.
 -- Based on: https://github.com/VonHeikemen/lazy-template
 
--- vim.g.jordy_autocompletion = 'nvim-cmp'
-vim.g.jordy_autocompletion = 'blink.cmp'
-
 local load = function(mod)
   package.loaded[mod] = nil -- Allow reloading a required lua module.
   return require(mod)

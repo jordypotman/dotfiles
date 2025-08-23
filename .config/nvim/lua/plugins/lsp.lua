@@ -4,12 +4,6 @@ return {
   {
     -- Quickstart configs for Nvim LSP.
     'neovim/nvim-lspconfig',
-    dependencies = {
-      {
-        'hrsh7th/cmp-nvim-lsp',
-        cond = vim.g.jordy_autocompletion == 'nvim-cmp',
-      }
-    },
     cmd = 'LspInfo',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
@@ -45,9 +39,6 @@ return {
       }
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      if vim.g.jordy_autocompletion == 'nvim-cmp' then
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-      end
 
       for server_name, _ in pairs(servers) do
         if servers[server_name].enabled then
