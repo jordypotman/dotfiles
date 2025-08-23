@@ -11,4 +11,4 @@ end
 load('config.keymaps').setup()
 load('config.options').setup()
 load('config.commands').setup()
-require('config.plugins').setup()
+require('config.plugin_manager').setup()

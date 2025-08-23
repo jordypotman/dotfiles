@@ -37,11 +37,11 @@ function lazy.setup(plugins)
   require('lazy').setup(plugins, lazy.opts)
 end
 
-local plugins = {}
+local plugin_manager = {}
 
-function plugins.setup()
+function plugin_manager.setup()
   -- Import plugins configs from nvim/lua/plugins/ folder.
   lazy.setup({{import = 'plugins'}, {import = 'local/plugins'}})
 end
 
-return plugins
+return plugin_manager
