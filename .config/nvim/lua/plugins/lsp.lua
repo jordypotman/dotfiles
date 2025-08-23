@@ -52,7 +52,7 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('jordy-lsp-attach', { clear = true }),
         callback = function(event)
-          require('user.keymaps').lsp.setup(event.buf)
+          require('config.keymaps').lsp.setup(event.buf)
         end
       })
     end

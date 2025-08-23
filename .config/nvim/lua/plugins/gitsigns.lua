@@ -5,7 +5,7 @@ return {
   config = function()
     require('gitsigns').setup {
       on_attach = function(bufnr)
-        require('user.keymaps').gitsigns.setup(bufnr)
+        require('config.keymaps').gitsigns.setup(bufnr)
       end
     }
   end

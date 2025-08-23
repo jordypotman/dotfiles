@@ -8,7 +8,7 @@ end
 
 -- Load keymaps before other files because it sets mapleader.
 -- This way it also has effect on any leader mappings defined by plugins.
-load('user.keymaps').setup()
-load('user.settings').setup()
-load('user.commands').setup()
-require('user.plugins').setup()
+load('config.keymaps').setup()
+load('config.settings').setup()
+load('config.commands').setup()
+require('config.plugins').setup()

@@ -12,7 +12,7 @@ return {
     }
   },
   cmd = { 'Telescope' },
-  keys = function() return require('user.keymaps').telescope.get_keys() end,
+  keys = function() return require('config.keymaps').telescope.get_keys() end,
   config = function()
     if is_unix then
       require('telescope').load_extension('fzf')

@@ -8,5 +8,5 @@ return {
     'TmuxNavigateRight',
     'TmuxNavigatePrevious',
   },
-  keys = function() return require('user.keymaps').vim_tmux_navigator.get_keys() end
+  keys = function() return require('config.keymaps').vim_tmux_navigator.get_keys() end
 }

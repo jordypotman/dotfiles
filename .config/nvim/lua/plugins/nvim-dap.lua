@@ -6,7 +6,7 @@ return {
     'nvim-neotest/nvim-nio', -- required dependency for nvim-dap-ui
     'jay-babu/mason-nvim-dap.nvim'
   },
-  keys = function() return require('user.keymaps').dap.get_keys() end,
+  keys = function() return require('config.keymaps').dap.get_keys() end,
   config = function()
     require('mason-nvim-dap').setup({
       ensure_installed = {},
