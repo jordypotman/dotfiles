@@ -1,6 +1,6 @@
-local settings = {}
+local options = {}
 
-function settings.setup()
+function options.setup()
   -- Enable line numbering.
   vim.opt.number = true
 
@@ -43,4 +43,4 @@ function settings.setup()
   vim.diagnostic.config({ severity_sort = true })
 end
 
-return settings
+return options
