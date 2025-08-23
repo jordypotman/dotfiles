@@ -13,8 +13,6 @@ return {
   { 'tpope/vim-unimpaired', dependencies = 'tpope/vim-repeat' },
   -- Vim sugar for UNIX shell commands such as rm, mv, chmod, mkdir, find, etc.
   { 'tpope/vim-eunuch' },
-  -- Git wrapper.
-  { 'tpope/vim-fugitive' },
   -- Automatically adjust 'shiftwidth' and 'expandtab'.
   { 'tpope/vim-sleuth' },
   -- Asynchronous build and test dispatcher.
