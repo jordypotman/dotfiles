@@ -1,5 +1,7 @@
 return {
-  -- Git decorations.
+  -- gitsigns.nvim
+  -- https://github.com/lewis6991/gitsigns.nvim
+  -- Git integration for buffers.
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
