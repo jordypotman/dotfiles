@@ -1,4 +1,5 @@
 -- Setup lazy.nvim plugin manager.
+-- https://github.com/folke/lazy.nvim
 local lazy = {}
 
 lazy.path = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -14,16 +15,20 @@ lazy.opts = {
 }
 
 function lazy.install(path)
-  if not vim.loop.fs_stat(path) then
+  if not (vim.uv or vim.loop).fs_stat(path) then
     print('Installing lazy.nvim...')
-    vim.fn.system({
-      'git',
-      'clone',
-      '--filter=blob:none',
-      'https://github.com/folke/lazy.nvim.git',
-      '--branch=stable', -- latest stable release
-      path,
-    })
+    local repo = 'https://github.com/folke/lazy.nvim.git'
+    local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none',
+      '--branch=stable', repo, path })
+    if vim.v.shell_error ~= 0 then
+      vim.api.nvim_echo({
+        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+        { out, "WarningMsg" },
+        { "\nPress any key to exit..." },
+      }, true, {})
+      vim.fn.getchar()
+      os.exit(1)
+    end
     print('Done.')
   end
 end
@@ -40,7 +45,6 @@ end
 local plugin_manager = {}
 
 function plugin_manager.setup()
-  -- Import plugins configs from nvim/lua/plugins/ folder.
   lazy.setup({{import = 'plugins'}, {import = 'local/plugins'}})
 end
 
