@@ -8,7 +8,5 @@ return {
   -- Asynchronous build and test dispatcher.
   { 'tpope/vim-dispatch' },
   -- Easily add, change or delete surrounding parentheses, brackets, quotes, etc.
-  { 'tpope/vim-surround', dependencies = 'tpope/vim-repeat' },
-  -- Highlight the exact differences, based on characters and words.
-  { 'rickhowe/diffchar.vim' }
+  { 'tpope/vim-surround', dependencies = 'tpope/vim-repeat' }
 }
