@@ -28,7 +28,7 @@ return {
     },
     keymap = {
       preset = 'enter',
-      ['<Tab>' ] = {
+      ['<Tab>'] = {
         function(cmp)
           local has_words_before = function()
             local col = vim.api.nvim_win_get_cursor(0)[2]
@@ -38,6 +38,7 @@ return {
           local copilot_suggestion = require('copilot.suggestion')
           if copilot_suggestion.is_visible() then
             copilot_suggestion.accept()
+            return true
           elseif cmp.is_visible() then
             if #cmp.get_items() == 1 then
               return cmp.select_and_accept()
