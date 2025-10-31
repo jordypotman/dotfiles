@@ -29,6 +29,9 @@ return {
     keymap = {
       preset = 'enter',
       ['<Tab>'] = {
+        function() -- sidekick next edit suggestion
+          return require('sidekick').nes_jump_or_apply()
+        end,
         function(cmp)
           local has_words_before = function()
             local col = vim.api.nvim_win_get_cursor(0)[2]

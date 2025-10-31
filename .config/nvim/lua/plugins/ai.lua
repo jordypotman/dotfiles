@@ -104,5 +104,14 @@ return {
 
       chat.setup(opts)
     end
+  },
+  -- sidekick.nvim
+  -- Your Neovim AI sidekick
+  -- https://github.com/folke/sidekick.nvim
+  {
+    "folke/sidekick.nvim",
+    config = true,
+    event = { 'BufReadPre', 'BufNewFile' },
+    keys = require('config.keymaps').sidekick.get_keys()
   }
 }
