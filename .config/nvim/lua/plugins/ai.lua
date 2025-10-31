@@ -72,9 +72,6 @@ return {
   {
     'CopilotC-Nvim/CopilotChat.nvim',
     cmd = 'CopilotChat',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim' }
-    },
     opts = function()
       local user = vim.env.USER or 'User'
       user = user:sub(1, 1):upper() .. user:sub(2)
