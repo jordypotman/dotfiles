@@ -26,6 +26,9 @@ return {
         }
       }
     },
+    enabled = function()
+      return not vim.tbl_contains({ 'copilot-chat' }, vim.bo.filetype)
+    end,
     keymap = {
       preset = 'enter',
       ['<Tab>'] = {
