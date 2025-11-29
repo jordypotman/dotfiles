@@ -112,9 +112,6 @@ keymaps.telescope = {}
 
 function keymaps.telescope.get_keys()
   return {
-    { '<leader>ff', '<cmd>Telescope find_files<cr>' },
-    { '<leader>fb', '<cmd>Telescope buffers<cr>' },
-    { '<leader>fh', '<cmd>Telescope help_tags<cr>' },
   }
 end
 
@@ -145,6 +142,25 @@ function keymaps.sidekick.get_keys()
       expr = true,
       desc = "Goto/Apply Next Edit Suggestion",
     }
+  }
+end
+
+keymaps.snacks = {}
+
+function keymaps.snacks.get_keys()
+  return {
+    -- Top Pickers & Explorer
+    { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+    { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+    { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+    { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+    { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+    -- find
+    { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+    -- search
+    { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
   }
 end
 

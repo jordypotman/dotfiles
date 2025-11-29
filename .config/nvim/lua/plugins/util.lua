@@ -8,6 +8,7 @@ return {
     opts = {
       input = { enabled = true },
       picker = { enabled = true },
-    }
+    },
+    keys = function() return require('config.keymaps').snacks.get_keys() end,
   }
 }
