@@ -108,13 +108,6 @@ function keymaps.lsp.setup(buf)
   map('gW', vim.lsp.buf.workspace_symbol, 'Open Workspace Symbols')
 end
 
-keymaps.telescope = {}
-
-function keymaps.telescope.get_keys()
-  return {
-  }
-end
-
 keymaps.vim_tmux_navigator = {}
 
 function keymaps.vim_tmux_navigator.get_keys()
