@@ -2,7 +2,7 @@ return {
   -- Performant, batteries-included completion plugin for Neovim.
   'saghen/blink.cmp',
   version = '1.*',
-  event = 'InsertEnter',
+  event = { 'InsertEnter', 'CmdlineEnter' },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -79,6 +79,23 @@ return {
       providers = {
         -- Show buffer completions with LSP, defaults to { 'buffer' },
         lsp = { fallbacks = {} }
+      }
+    },
+    cmdline = {
+      enabled = true,
+      keymap = {
+        preset = 'cmdline',
+        ["<Right>"] = false,
+        ["<Left>"] = false
+      },
+      completion = {
+        list = { selection = { preselect = false } },
+        menu = {
+          auto_show = function(ctx)
+            return vim.fn.getcmdtype() == ":"
+          end
+        },
+        ghost_text = { enabled = true }
       }
     }
   },
