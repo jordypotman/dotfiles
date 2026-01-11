@@ -21,5 +21,11 @@ return {
     'folke/trouble.nvim',
     opts = {},
     cmd = 'Trouble'
+  },
+  {
+    -- Create key bindings that stick. WhichKey helps you remember your Neovim
+    -- keymaps, by showing available keybindings in a popup as you type.
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
   }
 }
