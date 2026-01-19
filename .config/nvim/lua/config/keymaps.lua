@@ -11,6 +11,29 @@ function keymaps.general.setup()
   -- line gets truncated.
   -- From: https://github.com/wincent/wincent/blob/30ea9601ddd061ead644504570546ec0435b77aa/aspects/nvim/files/.config/nvim/plugin/mappings/leader.lua#L13-L15
   vim.keymap.set('n', '<leader>p', ":echo expand('%')<cr>")
+
+  -- Begin LazyVim keymaps
+  -- From: https://github.com/LazyVim/LazyVim/blob/acc35382294d91b279b319510b906249a03b2764/lua/lazyvim/config/keymaps.lua
+
+  -- diagnostic
+  local diagnostic_goto = function(next, severity)
+    return function()
+      vim.diagnostic.jump({
+        count = (next and 1 or -1) * vim.v.count1,
+        severity = severity and vim.diagnostic.severity[severity] or nil,
+        float = true,
+      })
+    end
+  end
+  vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+  vim.keymap.set("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+  vim.keymap.set("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+  vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+  vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+  vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+  vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+
+  -- End LazyVim keymaps
 end
 
 keymaps.dap = {}
