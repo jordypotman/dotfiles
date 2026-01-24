@@ -15,6 +15,26 @@ function keymaps.general.setup()
   -- Begin LazyVim keymaps
   -- From: https://github.com/LazyVim/LazyVim/blob/acc35382294d91b279b319510b906249a03b2764/lua/lazyvim/config/keymaps.lua
 
+  local map = vim.keymap.set
+
+  -- better up/down
+  map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+  map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+  map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+  map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+
+  -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+  map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+  map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+  map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+  map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+  map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+  map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+
+  -- better indenting
+  map("x", "<", "<gv")
+  map("x", ">", ">gv")
+
   -- diagnostic
   local diagnostic_goto = function(next, severity)
     return function()
@@ -25,13 +45,13 @@ function keymaps.general.setup()
       })
     end
   end
-  vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-  vim.keymap.set("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
-  vim.keymap.set("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
-  vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-  vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-  vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
-  vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+  map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+  map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+  map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+  map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+  map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+  map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+  map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
   -- End LazyVim keymaps
 end
